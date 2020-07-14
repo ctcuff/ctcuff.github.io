@@ -2,7 +2,7 @@
   <div class="content">
     <section class="content__item">
       <p class="content__text content__text--name" data-splitting>Cameron Cuff</p>
-      <p class="content__text content__text--message">
+      <p class="content__text content__text--message" ref="message">
         I make things sometimes.
       </p>
     </section>
@@ -22,19 +22,28 @@
       animationStagger: 0.03
     }),
     beforeRouteLeave(to, from, next) {
-      const text = document.querySelectorAll(
-        '.content__text .word > .char, .content__text--message'
-      )
+      const name = document.querySelectorAll('.content__text .word > .char')
+
       gsap
         .timeline()
         .to(
-          text,
+          name,
           {
             opacity: 0,
             duration: this.animationDuration,
             ease: 'Power2.easeIn',
             y: '-150%',
             stagger: this.animationStagger
+          },
+          0
+        )
+        .to(
+          this.$refs.message,
+          {
+            opacity: 0,
+            duration: this.animationDuration,
+            ease: 'Power2.easeIn',
+            y: '-150%'
           },
           0
         )

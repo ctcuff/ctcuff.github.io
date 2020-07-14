@@ -58,8 +58,8 @@
       const rows = document.querySelectorAll('.contact__row')
 
       gsap
-        .to(rows, {
-          y: '-150%',
+        .to(gsap.utils.toArray(rows).reverse(), {
+          y: '150%',
           stagger: this.animationStagger,
           duration: this.textAnimationDuration,
           ease: 'Power2.easeIn'
